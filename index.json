@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ironwick-home",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

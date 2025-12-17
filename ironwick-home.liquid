@@ -1,0 +1,42 @@
+
+{% comment %}
+IRON WICK — SHOPIFY HOMEPAGE SECTION
+{% endcomment %}
+
+<section class="iw-page" id="top">
+  <style>
+    :root{
+      --iw-bg:#0b0c0f;
+      --iw-text:#f2f3f5;
+      --iw-muted:#b8bcc6;
+      --iw-line:rgba(255,255,255,.10);
+      --iw-line2:rgba(255,255,255,.14);
+      --iw-shadow: 0 16px 50px rgba(0,0,0,.55);
+      --iw-radius: 18px;
+      --iw-radius2: 22px;
+      --iw-max: 1120px;
+    }
+    .iw-page{color:var(--iw-text);background:linear-gradient(180deg,#07080b,var(--iw-bg));padding-bottom:1px}
+    .iw-wrap{max-width:var(--iw-max);margin:0 auto;padding:0 20px}
+    .iw-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:999px;border:1px solid var(--iw-line2);background:rgba(255,255,255,.06);color:var(--iw-text);font-weight:650;text-decoration:none}
+    .iw-btn.primary{background:#fff;color:#0b0c0f}
+  </style>
+
+  <div class="iw-wrap">
+    <h1>{{ section.settings.hero_title }}</h1>
+    <p>{{ section.settings.hero_subtitle }}</p>
+    <a class="iw-btn primary" href="{{ section.settings.shop_link }}">Shop Candles</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Iron Wick — Homepage",
+  "settings": [
+    { "type": "text", "id": "hero_title", "default": "Poured from the places that matter." },
+    { "type": "textarea", "id": "hero_subtitle", "default": "Forged in grit. Finished clean." },
+    { "type": "url", "id": "shop_link", "label": "Shop link" }
+  ],
+  "presets": [{ "name": "Iron Wick — Homepage" }]
+}
+{% endschema %}

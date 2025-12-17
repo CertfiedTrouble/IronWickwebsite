@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iron Wick Candle Co. — Poured from the places that matter.</title>
+  <meta name="description" content="Hard-wearing candles inspired by coastlines, lakes, mountains, and backroads that reset you. Forged in grit. Finished clean." />
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --panel:#11131a;
+      --panel2:#0f1015;
+      --text:#f2f3f5;
+      --muted:#b8bcc6;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.14);
+      --accent:#ffffff;
+      --shadow: 0 16px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 22px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 80% -10%, rgba(255,255,255,.10), transparent 60%),
+        radial-gradient(700px 360px at 20% 10%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, #07080b, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:.55rem;
+      padding:14px 18px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:650;
+      letter-spacing:.2px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.22)}
+    .btn:active{transform: translateY(0px)}
+    .btn.primary{
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      border-color: rgba(255,255,255,.92);
+    }
+    .btn.primary:hover{background:#fff}
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.25px;
+    }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(12px);
+      background: rgba(8,9,12,.65);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      height:74px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width:220px;
+    }
+    .brand img{
+      height:36px; width:auto; display:block;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.5));
+    }
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:18px; align-items:center;
+    }
+    nav a{
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.2px;
+      padding:10px 10px;
+      border-radius:999px;
+      transition: background .15s ease, color .15s ease;
+    }
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .nav-cta{display:flex; align-items:center; gap:10px}
+    .menu-btn{display:none}
+
+    .hero{
+      position:relative;
+      padding: 64px 0 44px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-140px -120px -140px -120px;
+      background:
+        radial-gradient(900px 500px at 70% 20%, rgba(255,255,255,.12), transparent 65%),
+        radial-gradient(700px 420px at 25% 35%, rgba(255,255,255,.08), transparent 60%);
+      pointer-events:none;
+    }
+
+    .watermark{
+      position:absolute;
+      inset:auto -80px -120px auto;
+      width:min(760px, 82vw);
+      opacity:.08;
+      transform: rotate(-3deg);
+      filter: blur(.2px) saturate(1.2);
+      pointer-events:none;
+      user-select:none;
+    }
+
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .hero-card{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(900px 420px at 30% 0%, rgba(255,255,255,.08), transparent 55%);
+      pointer-events:none;
+    }
+
+    .h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      letter-spacing:.6px;
+      line-height:1.03;
+      font-weight:900;
+      text-transform: uppercase;
+    }
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height:1.6;
+      max-width: 56ch;
+    }
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:16px;
+      position:relative;
+      z-index:1;
+    }
+
+    .side-card{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(17,19,26,.92), rgba(14,15,21,.92));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .side-card h3{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+    }
+    .side-card p{margin:0; color:var(--muted); line-height:1.65; font-size:14.5px}
+    .side-list{
+      margin:14px 0 0; padding:0; list-style:none;
+      display:grid; gap:10px;
+    }
+    .side-list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(255,255,255,.70);
+      margin-top:4px;
+      flex:0 0 auto;
+    }
+
+    section{padding: 54px 0}
+    .kicker{
+      color:var(--muted);
+      font-weight:750;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      font-size:12px;
+      margin:0 0 12px;
+    }
+    .h2{
+      margin:0 0 10px;
+      font-size: clamp(26px, 2.7vw, 36px);
+      letter-spacing:.3px;
+      font-weight:900;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size: 16px;
+      max-width: 70ch;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      margin-top:22px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 34px rgba(0,0,0,.40);
+      position:relative;
+      overflow:hidden;
+      min-height: 150px;
+    }
+    .card h4{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+    }
+    .card p{margin:0; color:var(--muted); line-height:1.7; font-size:14.5px}
+    .card:before{
+      content:"";
+      position:absolute; inset:-30% -30% auto -30%;
+      height:120px;
+      background: radial-gradient(400px 120px at 20% 40%, rgba(255,255,255,.10), transparent 70%);
+      pointer-events:none;
+    }
+
+    .scent-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:16px;
+      margin-top:22px;
+    }
+    .scent{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .scent .name{
+      display:flex; align-items:center; gap:10px;
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:.3px;
+      margin:0 0 10px;
+      text-transform: uppercase;
+    }
+    .scent p{margin:0; color:var(--muted); line-height:1.75}
+    .scent:after{
+      content:"";
+      position:absolute; inset:auto -80px -110px auto;
+      width:320px; height:320px;
+      background: radial-gradient(180px 180px at 40% 40%, rgba(255,255,255,.12), transparent 65%);
+      transform: rotate(-10deg);
+      pointer-events:none;
+    }
+
+    .closing{
+      padding: 64px 0 74px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+    .closing-box{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .closing-box h3{
+      margin:0 0 10px;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .closing-box p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:16px;
+      max-width: 78ch;
+    }
+    footer{
+      padding: 26px 0;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+    .footer-row{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+
+    @media (max-width: 940px){
+      .hero-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+      .menu-btn{display:inline-flex}
+      .brand{min-width:auto}
+      .grid3{grid-template-columns:1fr}
+      .scent-grid{grid-template-columns:1fr}
+      .watermark{inset:auto -50px -170px auto; width:min(680px, 96vw); opacity:.07}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Iron Wick Home">
+      <img src="assets/iron-wick-logo.png" alt="Iron Wick Candle Co. logo" />
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#difference">The Difference</a></li>
+        <li><a href="#scents">Scents</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn" href="#scents">Explore Scents</a>
+      <a class="btn primary" href="#shop">Shop Candles</a>
+      <a class="btn menu-btn" href="#menu" aria-label="Menu">Menu</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <img class="watermark" src="assets/iron-wick-logo.png" alt="" aria-hidden="true" />
+
+    <div class="wrap hero-grid">
+      <div class="hero-card">
+        <div class="pill">IRON WICK — CANDLE CO.</div>
+        <h1 class="h1">Poured from the places that matter.</h1>
+
+        <p class="sub">
+          Hard-wearing candles inspired by the coastlines, lakes, mountains, and backroads that reset you.<br />
+          <strong>Forged in grit. Finished clean.</strong>
+        </p>
+
+        <div class="cta-row" id="shop">
+          <a class="btn primary" href="#shop">Shop Candles</a>
+          <a class="btn" href="#scents">Explore Scents</a>
+        </div>
+      </div>
+
+      <aside class="side-card" aria-label="Quick brand summary">
+        <h3>Built for real places</h3>
+        <p>
+          Scents made to carry memory — not trends, not gimmicks. Heavy materials. Clean burn.
+        </p>
+
+        <ul class="side-list">
+          <li><span class="dot"></span><div><strong>Place-driven</strong><br/><span style="color:var(--muted)">Coast • Lake • Mountain • Camp • Swamp</span></div></li>
+          <li><span class="dot"></span><div><strong>Balanced strength</strong><br/><span style="color:var(--muted)">Bold without choking you out</span></div></li>
+          <li><span class="dot"></span><div><strong>Finished clean</strong><br/><span style="color:var(--muted)">Intentional details, no fluff</span></div></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="wrap">
+      <p class="kicker">Brand statement</p>
+      <h2 class="h2">Iron Wick was built on a simple idea:</h2>
+      <p class="lead">
+        <strong>the places that shape you deserve to be remembered.</strong><br/><br/>
+        From early mornings on the water to late nights by the fire, our candles are poured to carry the feel of real places —
+        not trends, not gimmicks.<br/><br/>
+        Heavy materials. Clean burn.<br/>
+        Scents made for men who work with their hands and still appreciate when something smells damn good.
+      </p>
+    </div>
+  </section>
+
+  <section id="difference">
+    <div class="wrap">
+      <p class="kicker">The Iron Wick difference</p>
+      <h2 class="h2">Forged, Not Fancy</h2>
+      <p class="lead">
+        Our identity is built on iron, steel, and fire — not gloss or hype. Every detail is intentional, from the name to the burn.
+      </p>
+
+      <div class="grid3" role="list">
+        <div class="card" role="listitem">
+          <h4>Forged, Not Fancy</h4>
+          <p>
+            Built on iron, steel, and fire — not gloss or hype. Every detail is intentional, from the name to the burn.
+          </p>
+        </div>
+
+        <div class="card" role="listitem">
+          <h4>Clean Burn, Strong Scent</h4>
+          <p>
+            Masculine doesn’t have to mean overpowering. Balanced, bold fragrances that fill a room without choking it out.
+          </p>
+        </div>
+
+        <div class="card" role="listitem">
+          <h4>Place-Driven Scents</h4>
+          <p>
+            Every candle is tied to a place — coast, lake, mountain, camp, swamp. Because scent is memory.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scents">
+    <div class="wrap">
+      <p class="kicker">Scent collection preview</p>
+      <h2 class="h2">Built to hit like memory</h2>
+      <p class="lead">Two starters — more places coming soon.</p>
+
+      <div class="scent-grid">
+        <div class="scent">
+          <div class="name">🐊 Swamp Citrus</div>
+          <p>Bright citrus cut with wild greens and agave — humid, sharp, alive.</p>
+        </div>
+
+        <div class="scent">
+          <div class="name">🔥 Gator Proof</div>
+          <p>Citrus, smoke, and heat — built to stand its ground.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-box">
+        <h3>Iron Wick isn’t about decoration.</h3>
+        <p>
+          It’s about where you’ve been — and where you’re going.<br/>
+          <strong>Poured from the places that matter.</strong>
+        </p>
+
+        <div class="cta-row" style="margin-top:18px">
+          <a class="btn primary" href="#shop">Shop Candles</a>
+          <a class="btn" href="#top">Back to Top</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© <span id="year"></span> Iron Wick Candle Co.</div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="#story">Our Story</a>
+      <a href="#difference">The Difference</a>
+      <a href="#scents">Scents</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
